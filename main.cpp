@@ -69,6 +69,27 @@ bool test_full_size3() {
     return result == 0;
 }
 
+// проверка негативного значения
+bool test_body_size1() {
+    Candle data(0, 0, 0, 1);
+    double result = data.body_size();
+    return result == 1;
+}
+
+// проверка позитивного значения
+bool test_body_size2() {
+    Candle data(1, 0, 0, 0);
+    double result = data.body_size();
+    return result == 1;
+}
+
+// проверка zero значения
+bool test_body_size3() {
+    Candle data(0.0, 0, 0, 0);
+    double result = data.body_size();
+    return result == 0;
+}
+
 void initTests()
 {
     tests.push_back(test_body_contains1);
@@ -80,6 +101,9 @@ void initTests()
     tests.push_back(test_full_size1);
     tests.push_back(test_full_size2);
     tests.push_back(test_full_size3);
+    tests.push_back(test_body_size1);
+    tests.push_back(test_body_size2);
+    tests.push_back(test_body_size3);
 }
 
 int launchTests()
