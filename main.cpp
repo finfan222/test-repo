@@ -85,9 +85,30 @@ bool test_body_size2() {
 
 // проверка zero значения
 bool test_body_size3() {
-    Candle data(0.0, 0, 0, 0);
+    Candle data(0, 0, 0, 0);
     double result = data.body_size();
     return result == 0;
+}
+
+// проверка true значения close < open
+// на вход: close=0, open=1
+// PASSED если close < open, т.к. оно == red
+bool test_is_red1() {
+    return Candle(1, 0, 0, 0).is_red();
+}
+
+// проверка false значения close < open
+// на вход: close=1, open=0
+// PASSED если close > open, т.к. оно != red
+bool test_is_red2() {
+    return !Candle(0, 0, 0, 1).is_red();
+}
+
+// проверка equals значения
+// на вход: close=0, open=0
+// PASSED если close == open, т.к. оно != red
+bool test_is_red3() {
+    return !Candle(0, 0, 0, 0).is_red();
 }
 
 void initTests()
@@ -104,6 +125,9 @@ void initTests()
     tests.push_back(test_body_size1);
     tests.push_back(test_body_size2);
     tests.push_back(test_body_size3);
+    tests.push_back(test_is_red1);
+    tests.push_back(test_is_red2);
+    tests.push_back(test_is_red3);
 }
 
 int launchTests()
