@@ -48,6 +48,27 @@ bool test_contains3() {
     return !data.contains(2.0); // true если !(price >= low && price !(price <= high))
 }
 
+// проверка негативного значения
+bool test_full_size1() {
+    Candle data(0.0, 0, 1, 0);
+    double result = data.full_size();
+    return result == 1;
+}
+
+// проверка позитивного значения
+bool test_full_size2() {
+    Candle data(0.0, 1, 0, 0);
+    double result = data.full_size();
+    return result == 1;
+}
+
+// проверка zero значения
+bool test_full_size3() {
+    Candle data(0.0, 0, 0, 0);
+    double result = data.full_size();
+    return result == 0;
+}
+
 void initTests()
 {
     tests.push_back(test_body_contains1);
@@ -56,6 +77,9 @@ void initTests()
     tests.push_back(test_contains1);
     tests.push_back(test_contains2);
     tests.push_back(test_contains3);
+    tests.push_back(test_full_size1);
+    tests.push_back(test_full_size2);
+    tests.push_back(test_full_size3);
 }
 
 int launchTests()
