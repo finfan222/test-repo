@@ -111,6 +111,27 @@ bool test_is_red3() {
     return !Candle(0, 0, 0, 0).is_red();
 }
 
+// проверка true значения
+// на вход: close=1, open=0
+// PASSED если close > open, т.к. оно == green
+bool test_is_green1() {
+    return Candle(0, 0, 0, 1).is_green();
+}
+
+// проверка false значения
+// на вход: close=0, open=1
+// PASSED если close < open, т.к. оно != green
+bool test_is_green2() {
+    return !Candle(1, 0, 0, 0).is_green();
+}
+
+// проверка true значения
+// на вход: close=0, open=0
+// PASSED если close == open, т.к. оно != green
+bool test_is_green3() {
+    return !Candle(0, 0, 0, 0).is_green();
+}
+
 void initTests()
 {
     tests.push_back(test_body_contains1);
@@ -128,6 +149,9 @@ void initTests()
     tests.push_back(test_is_red1);
     tests.push_back(test_is_red2);
     tests.push_back(test_is_red3);
+    tests.push_back(test_is_green1);
+    tests.push_back(test_is_green2);
+    tests.push_back(test_is_green3);
 }
 
 int launchTests()
